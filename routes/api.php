@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\VenueController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/user', function (Request $request) {
@@ -14,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 // Route::delete('events/{event}', [EventController::class, 'destroy']);
 
 Route::apiResource('events', EventController::class);
+Route::apiResource('venues', VenueController::class);

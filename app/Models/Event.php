@@ -19,4 +19,9 @@ class Event extends Model
         'event_meetup_url',
         'event_is_virtual',
     ];
+
+    function venue()
+    {
+        return $this->belongsTo(Venue::class, 'fk_venue_event');
+    }
 }

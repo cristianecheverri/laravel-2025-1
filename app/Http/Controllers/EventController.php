@@ -13,7 +13,9 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
-        return Event::all();
+        return Event::where('event_name', 'ilike', "%$request->search%")
+            ->orderBy('event_date', 'desc')
+            ->get();
     }
 
     /**
