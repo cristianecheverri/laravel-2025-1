@@ -1,28 +1,24 @@
 <?php
 
-use Illuminate\Support\Facades\Log;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 Route::get('/', function () {
-    return [
-        "mensaje" => "Hola mundo"
-    ];
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
 
-Route::get('/saludo', function () {
-    Log::info('Llamaron saludo');
-    return [
-        "estado" => true,
-        "mensaje" => "Hola mundo desde la ruta saludo",
-        "codigo" => 200
-    ];
-});
-
-
-Route::get('/dashboard', function () {
-    return [
-        "estado" => true,
-        "mensaje" => "Hola mundo desde la ruta saludo",
-        "codigo" => 200
-    ];
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
 });
