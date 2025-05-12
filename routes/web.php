@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\VenueController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -21,4 +22,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    // Añade esto para el nuevo recurso venues
+    Route::resource('venues', VenueController::class);
+
 });
