@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\EventController;
 use App\Http\Controllers\Web\VenueController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -25,5 +26,6 @@ Route::middleware([
 
     // Añade esto para el nuevo recurso venues
     Route::resource('venues', VenueController::class);
+    Route::resource('events', EventController::class);
 
 });
